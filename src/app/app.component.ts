@@ -33,6 +33,32 @@ export class AppComponent {
   ];
 
   constructor(){}
+
+  clickedMarker(marker:marker, index:number){
+    console.log("clicked marker " + marker.name + " at " + index)
+  };
+
+  mapClicked($event:any){
+    let newMarker = {
+      name: 'Untitled',
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      draggable: false
+    };
+    this.markers.push(newMarker);
+  }
+
+  markerDragEnd(marker: any, $event: any){
+    let updMarker = {
+      name: marker.name,
+      lat: parseFloat(marker.lat),
+      lng: parseFloat(marker.lng),
+      draggable: false
+    };
+
+    let newLat = $event.coords.lat;
+    let newLng = $event.coords.lng;
+  }
 }
 
 interface marker {
