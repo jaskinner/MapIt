@@ -11,6 +11,11 @@ export class AppComponent {
   lat: number = 40.7128;
   lng: number = -74.0059;
 
+  markerName:string;
+  markerLat:string;
+  markerLng:string;
+  markerDraggable:boolean;
+
   markers: marker[] = [
     {
       name: 'Company One',
@@ -58,6 +63,17 @@ export class AppComponent {
 
     let newLat = $event.coords.lat;
     let newLng = $event.coords.lng;
+  }
+
+  addMarker(){
+    let newMarker = {
+      name:this.markerName,
+      lat:parseFloat(this.markerLat),
+      lng:parseFloat(this.markerLng),
+      draggable:this.markerDraggable
+    };
+
+    this.markers.push(newMarker);
   }
 }
 
